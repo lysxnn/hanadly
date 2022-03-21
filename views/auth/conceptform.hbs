@@ -1,0 +1,18 @@
+<h1>Post your concept</h1>
+
+<form action="/post-concept" method="post">
+<label for="name">New concept</label>
+<input type="text" name="concept" placeholder="Title of your concept">
+
+<label for="description">Description</label>
+<input type="text-area" name="description" placeholder="What is your concept about?">
+
+<button type="submit">Publish</button>
+
+{{!-- <a href="/">Back to Index</a> --}}
+
+</form>
+
+{{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}

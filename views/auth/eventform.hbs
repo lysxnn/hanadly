@@ -1,0 +1,30 @@
+<h1>Publish your event</h1>
+
+<form action="/post-event" method="post">
+<label for="name">New event</label>
+<input type="text" name="eventname" placeholder="Title of your event">
+
+<label for="">Date</label>
+<input type="date" name="date" placeholder="Date of the event">
+
+<label for="">Eventtype</label>
+<input type="text" name="eventtype" placeholder="Type of the event">
+
+<label for="description">Description</label>
+<input type="text-area" name="description" placeholder="What is your concept about?">
+
+<label for="contact">Contact</label>
+<input type="" name="contact" placeholder="Your name">
+
+<label for="email">Email</label>
+<input type="text" name="email" placeholder="Your email">
+
+<button type="submit">Publish</button>
+
+{{!-- <a href="/">Back to Index</a> --}}
+
+</form>
+
+{{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}
