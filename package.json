@@ -7,13 +7,21 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+>>>>>>> cc798469bec34876dde6b8e5ff4436f47f25b7db
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "mongoose": "^6.2.7",
     "morgan": "^1.10.0",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
