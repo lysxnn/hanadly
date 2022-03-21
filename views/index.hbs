@@ -1,2 +1,136 @@
-<h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+<!--________Home Carousel________ -->
+
+<style>
+  .carousel-item {
+    height: 40rem; 
+    background: #777; 
+    color: white; 
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    }
+    .container-slide-text { 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      right: 0;
+      right: 0;
+      padding-left: 120px;
+      padding-bottom: 50px; 
+      }
+
+</style>
+
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-bs-target="#myCarousel"
+    data-bs-slide-to="0" class="active">
+    </li>
+    <li data-bs-target="#myCarousel"
+    data-bs-slide-to="1">
+    </li>
+    <li data-bs-target="#myCarousel"
+    data-bs-slide-to="2">
+    </li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active" 
+    style="background-image:url( /images/colorfull-hands.png);">
+      <div class="container-slide-text">
+        <h1>Example Check</h1>
+        <p>
+          Some paragraph goes here!
+        </p>
+        <a href="/auth/signup" class="signup-btn btn btn-warning btn-lg">
+          Sign up today
+        </a>
+      </div>
+    </div>
+    <div class="carousel-item"
+    style="background-image:url( /images/social-work.png);">
+      
+      <div class="container-slide-text">
+        <h1>Example Check 2</h1>
+        <p>
+          Another paragraph goes here!
+        </p>
+        <a href="/auth/signup" class="signup-btn btn btn-warning btn-lg">
+          Sign up today
+        </a>
+      </div>
+    </div>
+    <div class="carousel-item"
+    style="background-image:url( images/two-neighbors.png);">
+      <div class="container-slide-text">
+        <h1>Engage in your neighborhood</h1>
+        <p>
+          Another paragraph goes here!
+        </p>
+
+        <a href="/auth/signup" class="signup-btn btn btn-warning btn-lg">
+          Sign up today
+        </a>
+      </div>
+    </div>
+  </div>
+  <a
+    href="#myCarousel"
+    class="carousel-control-prev"
+    role="button"
+    data-bs-slide="prev"
+  >
+    <span class="sr-only"></span>
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </a>
+  <a
+    href="#myCarousel"
+    class="carousel-control-next"
+    role="button"
+    data-bs-slide="next"
+  >
+    <span class="sr-only"></span>
+    <span class="carousel-control-next-icon"
+    aria-hidden="true"></span>
+  </a>
+</div>
+
+<!--________Home Cards________ -->
+
+<div class="cards-container row row-cols-1 row-cols-sm-2 g-4 spacing">
+  <div class="col w-25 card-single">
+    <div class="card">
+      <img src="/images/home-cards/love-your-neighbor.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col w-25 card-single">
+    <div class="card">
+      <img src="/images/home-cards/ask-for-help.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col w-25 card-single">
+    <div class="card">
+      <img src="/images/home-cards/human-kindness.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col w-25 card-single">
+    <div class="card">
+      <img src="/images/home-cards/your-creation.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
