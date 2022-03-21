@@ -10,3 +10,132 @@ a {
 h1 {
   color: 15px;
 }
+
+/* Footer */
+.footer {
+  background: #303036;
+  color: #d3d3d3;
+  height: 400px;
+  font-family: inherit;
+}
+
+.footer .footer-bottom {
+  width: 100%;
+  background: #303a40;
+  color: #686868;
+  height: 50px;
+  text-align: center;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+}
+
+.footer .footer-content {
+  height: 350px;
+  display: flex;
+}
+.footer .footer-content .footer-section {
+  flex: 1;
+  padding: 25px;
+}
+.footer .footer-content h1,
+.footer .footer-content h2 {
+  color: white;
+}
+.footer .footer-content .about h1 span {
+  color: #fa4350;
+}
+.footer .footer-content .about .contact span {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.footer .footer-content .about {
+  color: #848b91;
+}
+
+.footer .footer-content .about .socials a {
+  border: 1px solid grey;
+  width: 30px;
+  height: 30px;
+  margin-top: 8px;
+  margin-right: 3px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 15px;
+  font-size: 1.1em;
+ }
+
+
+ .footer .footer-content .about .socials a i {
+   padding-top: 5px;
+   font-size: 17px;
+   color: white;
+ }
+
+ .footer .footer-content .about .socials a.bck-f:hover {
+   background-color: #3b5998 ;
+ }
+
+ .footer .footer-content .about .socials a.bck-t:hover {
+   background-color: #00acee;
+ }
+
+ .footer .footer-content .about .socials a i.fa-youtube:hover {
+   color: white;
+ }
+
+ .footer .footer-content .about .socials a.bck-y:hover {
+   background-color: #c4302b;
+ }
+
+ .footer .footer-content .about .socials a.bck-i:hover {
+   background: #d6249f;
+   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+   box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+ }
+
+ .footer .footer-content .links ul a {
+   display: block;
+   margin-bottom: 10px;
+   font-size: 19px;
+   transition: all .3;
+   color: #848b91;
+   margin-left: 0;
+ }
+
+ .footer .footer-content .links ul{
+   padding-left: 10px;
+   width: 30%;
+ }
+
+
+ .footer .footer-content h2 {
+   padding-top: 10px;
+   margin-left: 10px;
+ }
+
+
+
+ .footer .footer-content .links ul a:hover {
+   text-decoration: underline;
+   color: white;
+   transition: all .3;
+ }
+
+ .footer .footer-content .contact-form .contact-input {
+   background: #272727;
+   color: #bebdbd;
+   font-size: 14px;
+   margin-bottom: 10px;
+   line-height: 1.5rem;
+   padding: .9rem 1.4rem;
+   border: none;
+   width: 80%;
+   margin-left: 10px;
+}
+
+.footer .footer-content .contact-form .contact-input:focus {
+ background: #1a1a1a;
+}
