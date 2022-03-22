@@ -23,23 +23,21 @@ router.get("/signup-success", isLoggedOut, (req, res) => {
   res.render("auth/signup-success");
 });
 
-/* GET publish concept page */
 router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("auth/conceptform");
+  res.render("auth/profile");
 });
-
 
 /* _________POST ROUTES_________ */
 
 /* POST signup page */
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { email, username, password } = req.body;
+  const { username, firstname, lastname, email, password } = req.body;
 
   // make sure users fill all mandatory fields:
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !firstname || !lastname) {
     res.render("auth/signup", {
       errorMessage:
-        "All fields are mandatory. Please provide your username, email and password.",
+        "All fields are mandatory. Please provide your username, email,firstname, lastname and password.",
     });
     return;
   }
@@ -50,19 +48,19 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
   //Checks if the length is smaller than 8 chars and returns an errorMessage if it's not equal or higher than 8 chars
-  if (password.length < 8) {
+  /*   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
-  }
+  } */
   //Password = Minimum eight characters, at least one letter and one number:
-  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  /*   const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   if (!regex.test(password)) {
     return res.status(400).render("/signup", {
       errorMessage:
         "Your password needs to have a minimum of eight characters and at least one letter and one number.",
     });
-  }
+  } */
   //Search if Username already exists. If this is the case, return errorMessage
   User.findOne({ username }).then((found) => {
     if (found) {
@@ -81,14 +79,17 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
         return User.create({
-          email,
           username,
+          firstname,
+          lastname,
+          email,
           password: hashedPassword,
         });
       })
       // Bind the user to the session object
       .then((user) => {
-        user = req.session.user;
+        req.session.user = user;
+        console.log(req.session);
         return user;
       })
       //Render signup-success page after creating an account- might be wrong?
@@ -96,7 +97,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return res.render("auth/signup-success");
       }) */
       .then(() => {
-        res.redirect("/");
+        res.redirect("/profile");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -126,11 +127,11 @@ router.get("/login", isLoggedOut, (req, res) => {
 
 /* POST login page */
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   console.log("SESSION =====> ", req.session);
-  if (!username) {
+  if (!email) {
     return res.status(400).render("auth/login", {
-      errorMessage: "Please provide your username.",
+      errorMessage: "Please provide your email.",
     });
   }
 
@@ -139,18 +140,18 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  if (username === "" || password === "") {
+  if (email === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Please enter both, email and password to login.",
     });
     return;
   }
 
-  User.findOne({ username }).then((user) => {
+  User.findOne({ email }).then((user) => {
     // If the user isn't found, send the errorMessage
     if (!user) {
       res.render("auth/login", {
-        errorMessage: "User is not registered. Try with other username.",
+        errorMessage: "This Email is not registered. Please try another one.",
       });
       return;
     } else if (bcryptjs.compareSync(password, user.password)) {
@@ -159,7 +160,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       res.render("auth/login", { errorMessage: "Incorrect password." });
     }
   });
-
   //If username is saved in our DB =>
   //Checks if the in putted password matches the one saved in users id
   bcrypt
@@ -178,49 +178,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-/* GET profile page */
-router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("auth/profile");
-});
-
-/* GET profile page */
-router.get("/profile", isLoggedIn, async (req, res) => {
-  const loggedInUser = req.session.userInfo.username;
-  let currentUser = await UserModel.findOne({
-    username: loggedInUser,
-  });
-  await currentUser.populate("events"); // he also can publish ideas
-  res.render("auth/profile", { currentUser });
-});
-
-/* GET create-event page */
-router.get("/create-event", isLoggedIn, (req, res) => {
-  res.render("auth/eventform");
-});
-
-/* POST create-event page */
-router.post("/create-event", async (req, res, next) => {
-  const { eventname, date, eventtype, description, contact } = req.body;
-  const currentUserId = req.session.userInfo._id;
-  const currentUserName = req.session.userInfo.username;
-  const newEvent = {
-    event_name: eventname, // room_name
-    event_date: date, // room_size
-    event_type: eventtype,
-    description: description,
-    contact: contact
-  };
-  let eventFromDB = await EventModel.create(newEvent);
-  await UserModel.updateOne(
-    { username: currentUserName },
-    { $push: { events: [eventFromDB] } }
-  );
-  res.redirect("/profile");
-});
-
-
-
-router.get("/logout", isLoggedIn, (req, res) => {
+router.post("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res
