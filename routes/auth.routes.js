@@ -23,6 +23,10 @@ router.get("/signup-success", isLoggedOut, (req, res) => {
   res.render("auth/signup-success");
 });
 
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("auth/profile");
+});
+
 /* _________POST ROUTES_________ */
 
 /* POST signup page */
@@ -44,19 +48,19 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
   //Checks if the length is smaller than 8 chars and returns an errorMessage if it's not equal or higher than 8 chars
-  if (password.length < 8) {
+  /*   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
-  }
+  } */
   //Password = Minimum eight characters, at least one letter and one number:
-  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  /*   const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   if (!regex.test(password)) {
     return res.status(400).render("/signup", {
       errorMessage:
         "Your password needs to have a minimum of eight characters and at least one letter and one number.",
     });
-  }
+  } */
   //Search if Username already exists. If this is the case, return errorMessage
   User.findOne({ username }).then((found) => {
     if (found) {
@@ -84,7 +88,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
       })
       // Bind the user to the session object
       .then((user) => {
-        user = req.session.user;
+        req.session.user = user;
+        console.log(req.session);
         return user;
       })
       //Render signup-success page after creating an account- might be wrong?
@@ -92,7 +97,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return res.render("auth/signup-success");
       }) */
       .then(() => {
-        res.redirect("/");
+        res.redirect("/profile");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -173,7 +178,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
+router.post("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res

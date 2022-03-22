@@ -31,7 +31,6 @@ app.use("/", router);
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -47,7 +46,7 @@ app.use(
       maxAge: 60000, // 60 * 1000 ms === 1 min
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/db-name",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/hanadly",
     }),
   })
 );
