@@ -15,15 +15,15 @@ const eventSchema = new Schema(
       type: String,
       required: [true, "Eventtype is required."],
     },
+    description: {
+      type: String,
+      required: [true, "Description is required."],
+    },
     contact: {
       email: {
         type: String,
         required: [true, "Email is required."],
         match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
-      },
-      description: {
-        type: String,
-        required: [true, "Description is required."],
       },
     },
   },
