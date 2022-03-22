@@ -47,7 +47,7 @@ app.use(
       maxAge: 60000, // 60 * 1000 ms === 1 min
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/db-name",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/hanadly",
     }),
   })
 );

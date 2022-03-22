@@ -23,20 +23,11 @@ router.get("/signup-success", isLoggedOut, (req, res) => {
   res.render("auth/signup-success");
 });
 
-/* GET profile page */
-router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("auth/profile");
-});
-
 /* GET publish concept page */
 router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/conceptform");
 });
 
-/* GET publish event page */
-router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("auth/eventform");
-});
 
 /* _________POST ROUTES_________ */
 
@@ -188,13 +179,18 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
 
 /* GET profile page */
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("auth/profile");
+});
+
+/* GET profile page */
 router.get("/profile", isLoggedIn, async (req, res) => {
   const loggedInUser = req.session.userInfo.username;
   let currentUser = await UserModel.findOne({
     username: loggedInUser,
   });
   await currentUser.populate("events"); // he also can publish ideas
-  res.render("profile", { currentUser });
+  res.render("auth/profile", { currentUser });
 });
 
 /* GET create-event page */
