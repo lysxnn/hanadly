@@ -37,7 +37,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!username || !email || !password || !firstname || !lastname) {
     res.render("auth/signup", {
       errorMessage:
-        "All fields are mandatory. Please provide your username, email,firstname, lastname and password.",
+        "All fields are mandatory. Please provide your username, email, firstname, lastname and password.",
     });
     return;
   }
