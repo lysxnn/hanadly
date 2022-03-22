@@ -23,6 +23,21 @@ router.get("/signup-success", isLoggedOut, (req, res) => {
   res.render("auth/signup-success");
 });
 
+/* GET profile page */
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("auth/profile");
+});
+
+/* GET publish concept page */
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("auth/conceptform");
+});
+
+/* GET publish event page */
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("auth/eventform");
+});
+
 /* _________POST ROUTES_________ */
 
 /* POST signup page */
@@ -171,6 +186,43 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       next(err);
     });
 });
+
+/* GET profile page */
+router.get("/profile", isLoggedIn, async (req, res) => {
+  const loggedInUser = req.session.userInfo.username;
+  let currentUser = await UserModel.findOne({
+    username: loggedInUser,
+  });
+  await currentUser.populate("events"); // he also can publish ideas
+  res.render("profile", { currentUser });
+});
+
+/* GET create-event page */
+router.get("/create-event", isLoggedIn, (req, res) => {
+  res.render("auth/eventform");
+});
+
+/* POST create-event page */
+router.post("/create-event", async (req, res, next) => {
+  const { eventname, date, eventtype, description, contact } = req.body;
+  const currentUserId = req.session.userInfo._id;
+  const currentUserName = req.session.userInfo.username;
+  const newEvent = {
+    event_name: eventname, // room_name
+    event_date: date, // room_size
+    event_type: eventtype,
+    description: description,
+    contact: contact
+  };
+  let eventFromDB = await EventModel.create(newEvent);
+  await UserModel.updateOne(
+    { username: currentUserName },
+    { $push: { events: [eventFromDB] } }
+  );
+  res.redirect("/profile");
+});
+
+
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
