@@ -27,13 +27,13 @@ router.get("/signup-success", isLoggedOut, (req, res) => {
 
 /* POST signup page */
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { email, username, password } = req.body;
+  const { username, firstname, lastname, email, password } = req.body;
 
   // make sure users fill all mandatory fields:
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !firstname || !lastname) {
     res.render("auth/signup", {
       errorMessage:
-        "All fields are mandatory. Please provide your username, email and password.",
+        "All fields are mandatory. Please provide your username, email,firstname, lastname and password.",
     });
     return;
   }
@@ -75,8 +75,10 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
         return User.create({
-          email,
           username,
+          firstname,
+          lastname,
+          email,
           password: hashedPassword,
         });
       })
@@ -120,11 +122,11 @@ router.get("/login", isLoggedOut, (req, res) => {
 
 /* POST login page */
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   console.log("SESSION =====> ", req.session);
-  if (!username) {
+  if (!email) {
     return res.status(400).render("auth/login", {
-      errorMessage: "Please provide your username.",
+      errorMessage: "Please provide your email.",
     });
   }
 
@@ -133,18 +135,18 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  if (username === "" || password === "") {
+  if (email === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Please enter both, email and password to login.",
     });
     return;
   }
 
-  User.findOne({ username }).then((user) => {
+  User.findOne({ email }).then((user) => {
     // If the user isn't found, send the errorMessage
     if (!user) {
       res.render("auth/login", {
-        errorMessage: "User is not registered. Try with other username.",
+        errorMessage: "This Email is not registered. Please try another one.",
       });
       return;
     } else if (bcryptjs.compareSync(password, user.password)) {
@@ -153,7 +155,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       res.render("auth/login", { errorMessage: "Incorrect password." });
     }
   });
-
   //If username is saved in our DB =>
   //Checks if the in putted password matches the one saved in users id
   bcrypt
