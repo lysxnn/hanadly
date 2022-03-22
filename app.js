@@ -31,7 +31,6 @@ app.use("/", router);
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
