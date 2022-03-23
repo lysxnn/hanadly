@@ -71,6 +71,7 @@ h1 {
 }
 
 /* Footer */
+/* Doesn't take the same color as navbar */
 .footer {
   background: #212529 !important;
   height: 400px;
