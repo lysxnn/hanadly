@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
@@ -20,11 +21,15 @@ const eventSchema = new Schema(
       required: [true, "Description is required."],
     },
     contact: {
-      email: {
-        type: String,
-        required: [true, "Email is required."],
-        match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
-      },
+      type: String,
+    },
+    email: {
+      type: String,
+      required: [true, "Email is required."],
+    },
+    eventowner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   {
