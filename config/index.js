@@ -16,10 +16,24 @@ const favicon = require("serve-favicon");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
-const session = require("express-session");
+
+//Once the packages are installed, we have to require them
+const MongoStore = require("connect-mongo");
+const MONGO_URI = require("../db/mongo-url");
 
 // Middleware configuration
 module.exports = (app) => {
+  app.use(
+    require("express-session")({
+      secret: process.env.SESSION_SECRET,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      },
+      store: MongoStore.create({ mongoUrl: MONGO_URI }),
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
   // In development environment the app logs
   app.use(logger("dev"));
 
@@ -27,7 +41,6 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(session({ secret: "someSecret" }));
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));

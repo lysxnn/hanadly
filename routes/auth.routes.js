@@ -11,26 +11,15 @@ const User = require("../models/User.model");
 
 // Require middleware
 const isLoggedOut = require("../middleware/isLoggedOut");
-const isLoggedIn = require("../middleware/isLoggedIn");
+router.use(isLoggedOut);
 
 /* GET signup page */
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-/* GET signup-success page */
-router.get("/signup-success", isLoggedOut, (req, res) => {
-  res.render("auth/signup-success");
-});
-
-router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("auth/profile");
-});
-
-/* _________POST ROUTES_________ */
-
 /* POST signup page */
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/signup", (req, res) => {
   const { username, firstname, lastname, email, password } = req.body;
 
   // make sure users fill all mandatory fields:
@@ -89,7 +78,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       // Bind the user to the session object
       .then((user) => {
         req.session.user = user;
-        console.log(req.session);
+        console.log("first log of session", req.session);
         return user;
       })
       //Render signup-success page after creating an account- might be wrong?
@@ -121,71 +110,34 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 /* GET login page */
-router.get("/login", isLoggedOut, (req, res) => {
+router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
 /* POST login page */
-router.post("/login", isLoggedOut, (req, res, next) => {
+router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
+  console.log("this is req.body", req.body);
   console.log("SESSION =====> ", req.session);
-  if (!email) {
-    return res.status(400).render("auth/login", {
-      errorMessage: "Please provide your email.",
-    });
-  }
-
-  if (password.length < 8) {
-    return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
-    });
-  }
-  if (email === "" || password === "") {
-    res.render("auth/login", {
-      errorMessage: "Please enter both, email and password to login.",
-    });
-    return;
-  }
 
   User.findOne({ email }).then((user) => {
-    // If the user isn't found, send the errorMessage
-    if (!user) {
-      res.render("auth/login", {
-        errorMessage: "This Email is not registered. Please try another one.",
-      });
-      return;
-    } else if (bcryptjs.compareSync(password, user.password)) {
-      res.render("users/user-profile", { user });
-    } else {
-      res.render("auth/login", { errorMessage: "Incorrect password." });
-    }
-  });
-  //If username is saved in our DB =>
-  //Checks if the in putted password matches the one saved in users id
-  bcrypt
-    .compare(password, user.password)
-    .then((isSamePassword) => {
-      if (!isSamePassword) {
-        return res.status(400).render("auth/login", {
-          errorMessage: "Wrong credentials.",
-        });
-      }
-      req.session.user = user._id;
-      return res.redirect("/");
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+    console.log("here is the user", user);
 
-router.post("/logout", isLoggedIn, (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res
-        .status(500)
-        .render("auth/logout", { errorMessage: err.message });
-    }
-    res.redirect("/");
+    bcrypt
+      .compare(password, user.password)
+      .then((isSamePassword) => {
+        if (!isSamePassword) {
+          return res.status(400).render("auth/login", {
+            errorMessage: "Wrong credentials.",
+          });
+        }
+        req.session.user = user;
+        return res.redirect("/profile");
+      })
+      .catch((err) => {
+        console.log("this is the error", err);
+        next(err);
+      });
   });
 });
 
