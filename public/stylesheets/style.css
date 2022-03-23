@@ -72,7 +72,7 @@ h1 {
 
 /* Footer */
 .footer {
-  background: #1a1a1a;
+  background: #212529 !important;
   height: 400px;
 
   font-size: 14px;
@@ -87,7 +87,6 @@ h1 {
 .footer-content {
   text-decoration: none;
   width: 100%;
-  height: 50px;
   padding: 32px;
   height: 350px;
 
@@ -124,7 +123,7 @@ h1 {
   margin: 16px;
 }
 
-.footer .footer-content .links ul a {
+.footer-content .links ul a {
   text-decoration: none;
   padding: 0 16px;
 	display: inline;
@@ -133,7 +132,7 @@ h1 {
 }
 
 
-.footer .footer-content .links ul a:hover {
+.footer-content .links ul a:hover {
   text-decoration: underline;
   color: white;
   transition: all 0.3;
