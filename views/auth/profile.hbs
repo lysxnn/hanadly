@@ -1,15 +1,14 @@
+
 {{#if user}}
   <h2>Welcome, {{ user.firstname }}!</h2>
   <p>This is your profile!</p>
   <button>
-    <a href="/userProfile">Reload the page</a>
+    <a href="/profile">Reload the page</a>
   </button>
 
   <form action="/logout" method="POST">
     <input type="submit" value="Logout"/>
 </form>
-
-
 
 <div class="container">
   <header>
@@ -22,7 +21,7 @@
           <img class="photo" src="https://images.pexels.com/photos/1804796/pexels-photo-1804796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
           <div class="active"></div>
         </div>
-        <h4 class="name">Jane Doe</h4>
+        <h4 class="name"> hello {{ user.firstname }} </h4>
         <p class="info">UI/UX Designer</p>
         <p class="info">jane.doe@gmail.com</p>
         <div class="stats row">
