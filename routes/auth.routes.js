@@ -117,12 +117,10 @@ router.get("/login", (req, res) => {
 /* POST login page */
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
-  console.log("this is req.body", req.body);
-  console.log("SESSION =====> ", req.session);
 
   User.findOne({ email }).then((user) => {
-    console.log("here is the user", user);
-
+    req.session.user = user;
+    console.log("here is sess", req.session);
     bcrypt
       .compare(password, user.password)
       .then((isSamePassword) => {
@@ -131,7 +129,6 @@ router.post("/login", (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
-        req.session.user = user;
         return res.redirect("/profile");
       })
       .catch((err) => {
@@ -140,5 +137,7 @@ router.post("/login", (req, res, next) => {
       });
   });
 });
+
+
 
 module.exports = router;
