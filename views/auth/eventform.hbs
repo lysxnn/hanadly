@@ -1,29 +1,42 @@
-<h1>Publish your event</h1>
+<div class="page-header">
+  <h1>Publish your event</h1>
+</div>
 
-<form action="/create-event" method="post">
+<div class="event-form-container">
+<form id="form-events" action="/create-event" method="post">
+
 <label for="name">New event</label>
+<br>
 <input type="text" name="eventname" placeholder="Title of your event">
+<br>
 
 <label for="">Date</label>
+<br>
 <input type="date" name="date" placeholder="Date of the event">
+<br>
 
 <label for="">Eventtype</label>
+<br>
 <input type="text" name="eventtype" placeholder="Type of the event">
+<br>
 
 <label for="description">Description</label>
-<input type="text-area" name="description" placeholder="Describe your event or post the schedule of the event.">
-
+<br>
+<textarea name="description" id="text-area" {{!-- cols="55" --}} rows="10" placeholder="Describe your event or post the schedule of the event."></textarea>
 <label for="contact">Contact</label>
+<br>
 <input type="" name="contact" placeholder="Your name">
+<br>
 
 <label for="email">Email</label>
+<br>
 <input type="text" name="email" placeholder="Your email">
+<br>
 
-<button type="submit">Publish</button>
-
-<a href="/profile">Back to profile</a>
+<button class="login-btn btn btn-warning btn-md btn-spacing" type="submit">Publish</button>
 
 </form>
+</div>
 
 {{#if errorMessage}}
   <p class="error">{{errorMessage}}</p>

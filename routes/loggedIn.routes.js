@@ -25,7 +25,7 @@ router.post("/create-concept", isLoggedIn, async (req, res, next) => {
   };
   const conceptFromDB = await conceptmodel.create(createdConcept);
   console.log("conceptfrom DB", conceptFromDB);
-  res.redirect("/profile");
+  res.redirect("/concepts");
 });
 
 router.get("/create-event", isLoggedIn, (req, res) => {
@@ -47,7 +47,7 @@ router.post("/create-event", isLoggedIn, async (req, res, next) => {
   };
   const eventFromDB = await eventmodel.create(createdEvent);
   console.log("eventfrom DB", eventFromDB);
-  res.redirect("/profile");
+  res.redirect("/events");
 });
 
 router.post("/logout", isLoggedIn, (req, res) => {
