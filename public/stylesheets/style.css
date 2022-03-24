@@ -89,7 +89,7 @@ h1 {
   line-height: 1.5rem;
   border: none;
   width: 100%;
-  margin-top: 25%;
+  margin-top: 10%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -125,7 +125,6 @@ h1 {
 
 .navbar-brand > img {
   display: flex;
-
   justify-content: center;
 }
 
@@ -157,4 +156,19 @@ h1 {
   height: auto;
   cursor: pointer;
   max-width: 100%;
+}
+
+.buttons-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+}
+
+.event-img > img {
+  width: 100%;
+}
+
+.list-events-concepts {
+  margin: 50px;
 }
