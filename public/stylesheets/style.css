@@ -34,12 +34,12 @@ h1 {
 .cards-container {
   padding: 64px;
   width: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: baseline;
-	align-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: space-evenly;
 }
 
 /* how to set the gutter to 20px? */
@@ -50,8 +50,8 @@ h1 {
 
 /* How to remove the padding from the bottom when hovering?*/
 .card-single:hover {
-  padding: 0 10px ;
-  margin: 0 ;
+  padding: 0 10px;
+  margin: 0;
   /* background-color: #ffffff00 !important; DOESNT WORK WITH 0 OPACITY*/
   box-shadow: 0px 20px 20px 0px #00000040 !important;
 }
@@ -73,6 +73,10 @@ h1 {
   margin-left: 10%;
   width: 17%;
   margin-top: 1%;
+}
+
+.btn {
+  color: rgb(54, 53, 53) !important;
 }
 
 /* Footer */
@@ -132,14 +136,25 @@ h1 {
 .footer-content .links ul a {
   text-decoration: none;
   padding: 0 16px;
-	display: inline;
+  display: inline;
   font-size: 19px;
   color: #848b91;
 }
-
 
 .footer-content .links ul a:hover {
   text-decoration: underline;
   color: white;
   transition: all 0.3;
+}
+
+.gallery div {
+  margin-bottom: 30px;
+}
+
+.gallery img {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  max-width: 100%;
 }
