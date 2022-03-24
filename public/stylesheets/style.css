@@ -79,50 +79,6 @@ h1 {
   color: rgb(54, 53, 53) !important;
 }
 
-/* Footer */
-/* Doesn't take the same color as navbar */
-.footer {
-  background: #212529 !important;
-  height: 400px;
-
-  font-size: 14px;
-  line-height: 1.5rem;
-  border: none;
-  width: 100%;
-  margin-top: 10%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.footer-content {
-  text-decoration: none;
-  width: 100%;
-  padding: 32px;
-  height: 350px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.footer-section {
-  justify-content: center;
-  flex: 1;
-  padding: 50px;
-  color: #848b91;
-  width: 25%;
-  display: flex;
-  display: inline-flex;
-}
-
-#paragraph-footer {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-}
-
 .navbar-brand > img {
   display: flex;
   justify-content: center;
@@ -172,4 +128,52 @@ h1 {
 
 .list-events-concepts {
   margin: 50px;
+}
+
+.container {
+  margin-top: 60px;
+}
+
+/* Footer */
+/* Doesn't take the same color as navbar */
+.footer {
+  background: #212529 !important;
+  height: 400px;
+
+  font-size: 14px;
+  line-height: 1.5rem;
+  border: none;
+  width: 100%;
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer-content {
+  text-decoration: none;
+  width: 100%;
+  padding: 32px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.footer-section {
+  justify-content: center;
+  flex: 1;
+  padding: 50px;
+  color: #848b91;
+  width: 25%;
+  display: flex;
+  display: inline-flex;
+}
+
+#paragraph-footer {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
 }
