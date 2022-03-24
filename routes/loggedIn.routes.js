@@ -8,6 +8,25 @@ router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/profile", { user: req.session.user });
 });
 
+// router.get("/create-event", (req, res) => {
+//   res.render("auth/eventform");
+// });
+
+// router.post("/create-event", isLoggedIn, (req, res, next) => {
+//   const { eventname, date, eventtype, description, contact, email, eventowner } = req.body;
+//   const eventowner = req.session.user._id;
+//   let createdEvent = {
+//     eventname,
+//     date,
+//     eventtype,
+//     description,
+//     contact,
+//     email,
+//     eventowner,
+//   };
+//   const createdEvent
+// })
+
 router.get("/create-concept", (req, res) => {
   res.render("auth/conceptform");
 });
