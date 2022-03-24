@@ -126,6 +126,7 @@ h1 {
 .navbar-brand > img {
   display: flex;
   justify-content: center;
+  margin-right: 80px;
 }
 
 .footer-section > a {
