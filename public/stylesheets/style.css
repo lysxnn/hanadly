@@ -13,7 +13,8 @@ a {
 }
 
 h1 {
-  color: 15px;
+  color: #ffc107;
+  font-size: 24px;
 }
 /* _____NAV___________ */
 .navbar {
@@ -176,4 +177,79 @@ h1 {
   width: 25%;
   display: flex;
   flex-direction: column;
+}
+
+.navbar-brand > img {
+  display: flex;
+
+  justify-content: center;
+}
+
+.footer-section > a {
+  margin: 16px;
+}
+
+.footer-content .links ul a {
+  text-decoration: none;
+  padding: 0 16px;
+  display: inline;
+  font-size: 19px;
+  color: #848b91;
+}
+
+.footer-content .links ul a:hover {
+  text-decoration: underline;
+  color: white;
+  transition: all 0.3;
+}
+
+.page-header {
+  /* background-color: #848b91; */
+  /* padding: 32px; */
+  background-image: url("https://images.unsplash.com/photo-1505846140010-14f4672c8d05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1737&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.page-header h1 {
+  color: #ffc107 !important;
+  padding: 64px;
+}
+
+.event-form-container {
+  background-color: ghostwhite;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-form-container label,
+.event-form-container input {
+  margin-bottom: 16px;
+  margin-top: 16px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+#text-area {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+#form-events {
+  width: 40%;
+}
+
+#form-events input {
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  #form-events {
+    width: 50%;
+  }
 }
