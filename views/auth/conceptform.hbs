@@ -1,23 +1,24 @@
-<h1>Post your concept</h1>
+<div class="page-header">
+  <h1>Publish your concept</h1>
+</div>
 
-<form action="/create-concept" method="post">
+<div class="event-form-container">
+<form id="form-events" action="/create-concept" method="post">
 <label for="name">New concept</label>
 <input type="text" name="concept" placeholder="Title of your concept">
 
 <label for="description">Description</label>
-<input type="text-area" name="description" placeholder="What is your concept about?">
-
+<textarea name="description" id="text-area" {{!-- cols="55" --}} rows="10" placeholder="Describe your concept or idea."></textarea>
 <label for="contact">Contact</label>
 <input type="" name="contact" placeholder="Your name">
 
 <label for="email">Email</label>
 <input type="text" name="email" placeholder="Your email">
 
-<button type="submit">Publish</button>
-
-<a href="/profile">Back to profile</a>
+<button class="login-btn btn btn-warning btn-md btn-spacing" type="submit">Publish</button>
 
 </form>
+</div>
 
 {{#if errorMessage}}
   <p class="error">{{errorMessage}}</p>

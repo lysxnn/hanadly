@@ -1,8 +1,13 @@
-<form class="needs-validation" 
-action="/auth/signup" method="POST">
-  <div class="form-row">
+<div class="page-header">
+    <h1>Sign Up</h1>
+</div>
 
-    <div class="col-md-4 mb-3">
+<div class="event-form-container">
+<form id="form-sign-up" 
+action="/auth/signup" method="POST">
+  {{!-- <div class="form-row"> --}}
+
+   
       <label for="validationTooltip02">E-Mail</label>
       <input
         name="email"
@@ -11,8 +16,8 @@ action="/auth/signup" method="POST">
         id="validationTooltip02"
         placeholder="E-Mail"
       />
-    </div>
-    <div class="col-md-4 mb-3">
+    
+   
       <label for="validationTooltip01">First name</label>
       <input
         name="firstname"
@@ -22,8 +27,8 @@ action="/auth/signup" method="POST">
         placeholder="First name"
       />
 
-    </div>
-    <div class="col-md-4 mb-3">
+    
+   
       <label for="validationTooltip02">Last name</label>
       <input
         name="lastname"
@@ -33,20 +38,20 @@ action="/auth/signup" method="POST">
         placeholder="Last name"
       />
 
-      <div class="col-md-4 mb-3">
-        <label for="validationTooltip01">username</label>
+     
+        <label for="validationTooltip02">username</label>
         <input
           name="username"
           type="text"
           class="form-control"
-          id="validationTooltip01"
+          id="validationTooltip02"
           placeholder="username"
         />
 
-      </div>
+      
 
-    </div>
-    <div class="col-md-4 mb-3">
+    
+   
       <label for="validationTooltip02">Password</label>
       <input
         name="password"
@@ -56,12 +61,12 @@ action="/auth/signup" method="POST">
         placeholder="Password"
       />
 
-    </div>
-  </div>
+    
+  {{!-- </div> --}}
 
-  <button class="btn btn-primary" type="submit">Submit form</button>
+  <button class="btn btn-warning btn-md" type="submit">Sign Up</button>
 </form>
-
+</div>
 {{#if errorMessage}}
   <p class="error">{{errorMessage}}</p>
 {{/if}}

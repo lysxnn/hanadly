@@ -13,13 +13,7 @@
           <div class="active"></div>
         </div>
         <h4 class="name"> Welcome, {{ user.firstname }}! </h4>
-        <p class="info"> {{user.email }} </p>
-        <div class="social">
-          <i class="fa fa-facebook-square" aria-hidden="true"></i>
-          <i class="fa fa-twitter-square" aria-hidden="true"></i>
-          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
-          <i class="fa fa-tumblr-square" aria-hidden="true"></i>
-        </div>
+        <p class="info"> {{ user.email }} </p>
         <div class="buttons-profile">
           <form class="buttons-profile" action="/logout" method="POST">
     <input type="submit" value="Logout"/>
@@ -36,11 +30,6 @@
     </div>
       </div>
       <div class="right col-lg-8">
-        <ul class="nav">
-          <li>Events</li>
-          <li>Concepts</li>
-          <li>About</li>
-        </ul>
         
         <div class="row gallery">
           <div class="col-md-4">
