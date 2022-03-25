@@ -90,6 +90,10 @@ h1 {
   margin-right: 80px;
 }
 
+.error {
+  color: red;
+}
+
 .footer-section > a {
   margin: 16px;
 }
@@ -184,7 +188,7 @@ h1 {
 }
 
 #form-sign-up {
-  width: 30%
+  width: 30%;
 }
 
 @media screen and (min-width: 1200px) {
