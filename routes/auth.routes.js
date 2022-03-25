@@ -119,6 +119,11 @@ router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
   User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).render("auth/login", {
+        errorMessage: "Wrong credentials.",
+      });
+    }
     req.session.user = user;
     console.log("here is sess", req.session);
     bcrypt
