@@ -15,11 +15,11 @@
 <label for="email">Email</label>
 <input type="text" name="email" placeholder="Your email">
 
+{{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}
 <button class="login-btn btn btn-warning btn-md btn-spacing" type="submit">Publish</button>
 
 </form>
 </div>
 
-{{#if errorMessage}}
-  <p class="error">{{errorMessage}}</p>
-{{/if}}
